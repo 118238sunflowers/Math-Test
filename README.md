@@ -1,11 +1,11 @@
 # Math-Test
-    name: Get User Name
+name: Get User Name
 
-    on:
-      workflow_dispatch:
-        inputs:
-          user_name:
-            description: 'Please enter your name'
+on:
+workflow_dispatch:
+    inputs:
+         user_name:
+         description: 'Please enter your name'
             required: true
             type: string
 
