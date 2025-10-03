@@ -1,1 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Math Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 2rem auto;
+      line-height: 1.5;
+    }
+    h1 {
+      text-align: center;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+    }
+    .correct {
+      color: green;
+    }
+    .incorrect {
+      color: red;
+    }
+  </style>
+</head>
+<body>
 
+  <!-- 🌟 START OF MATH TEST 🌟 -->
+  <h1>Math Test</h1>
+
+  <!-- User Name -->
+  <label for="username">Enter your name:</label><br>
+  <input type="text" id="username" name="username" required>
+  <br><br>
+
+  <!-- Question 1 -->
+  <p>1. What is 198 &minus; 72?</p>
+  <label><input type="radio" name="q1" value="126"> 126</label><br>
+  <label><input type="radio" name="q1" value="120"> 120</label><br>
+  <label><input type="radio" name="q1" value="100"> 100</label><br><br>
+
+  <!-- Question 2 -->
+  <p>2. What is 7 &times; 12?</p>
+  <label><input type="radio" name="q2" value="72"> 72</label><br>
+  <label><input type="radio" name="q2" value="84"> 84</label><br>
+  <label><input type="radio" name="q2" value="96"> 96</label><br><br>
+
+  <!-- Question 3 -->
+  <p>3. What is 56 &divide; 7?</p>
+  <label><input type="radio" name="q3" value="6"> 6</label><br>
+  <label><input type="radio" name="q3" value="8"> 8</label><br>
+  <label><input type="radio" name="q3" value="7"> 7</label><br><br>
+
+  <!-- Word Problem -->
+  <p>
+    4. Sally bought a big bag of candy to share with her friends for Halloween.  
+    The bag had 550 candies in total. She gave Ben 67 candies.  
+    She also gave Tom 300 candies. Then she gave Erick 100 candies.  
+    How many candies does Sally have left?
+  </p>
+  <textarea name="word-problem" id="word-problem" rows="4" cols="50" placeholder="Type your answer here..."></textarea>
+  <br><br>
+
+  <!-- Submit Button -->
+  <button type="button" onclick="gradeTest()">Submit Test</button>
+
+  <!-- Result Section -->
+  <div class="result" id="result"></div>
+
+  <!-- ℹ️ Math Symbols: &minus;, &times;, &divide; used above -->
+  <!-- 🌟 END OF MATH TEST 🌟 -->
+
+  <script>
+    function gradeTest() {
+      let score = 0;
+      const total = 4;
+      let feedback = "";
+
+      const name = document.getElementById('username').value.trim() || "Student";
+
+      // Question 1
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      if (q1 && q1.value === "126") {
+        score++;
+        feedback += `<p class="correct">Question 1: Correct ✅</p>`;
+      } else {
+        feedback += `<p class="incorrect">Question 1: Incorrect ❌ (Correct answer: 126)</p>`;
+      }
+
+      // Question 2
+      const q2 = document.querySelector('input[name="q2"]:checked');
+      if (q2 && q2.value === "84") {
+        score++;
+        feedback += `<p class="correct">Question 2: Correct ✅</p>`;
+      } else {
+        feedback += `<p class="incorrect">Question 2: Incorrect ❌ (Correct answer: 84)</p>`;
+      }
+
+      // Question 3
+      const q3 = document.querySelector('input[name="q3"]:checked');
+      if (q3 && q3.value === "8") {
+        score++;
+        feedback += `<p class="correct">Question 3: Correct ✅</p>`;
+      } else {
+        feedback += `<p class="incorrect">Question 3: Incorrect ❌ (Correct answer: 8)</p>`;
+      }
+
+      // Word problem
+      const wordAnswer = document.getElementById('word-problem').value.trim();
+      if (wordAnswer === "83") {
+        score++;
+        feedback += `<p class="correct">Question 4: Correct ✅</p>`;
+      } else {
+        feedback += `<p class="incorrect">Question 4: Incorrect ❌ (Correct answer: 83)</p>`;
+      }
+
+      const percent = Math.round((score / total) * 100);
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `<strong>${name}</strong>, you scored <strong>${score}/${total}</strong> (${percent}%).<br>${feedback}`;
+    }
+  </script>
+
+</body>
+</html>
